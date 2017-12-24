@@ -2,12 +2,16 @@ package com.example.halki.testnumbersapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import java.util.*;
 
 
 public class MainActivity extends AppCompatActivity {
     Random rand = new Random();
-    private int upLimit;
+    public int upLimit;
     private int lowLimit;
     private int guessNumber;
 
@@ -15,17 +19,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        start(500);
     }
-    void start(int limit){
+
+    public void start(View view){
+        EditText editText = findViewById(R.id.editText);
+        upLimit = Integer.parseInt(editText.getText().toString());
         lowLimit = 0;
-        upLimit = limit;
-        guess();
+        System.out.println("The upper limit is: "+upLimit);
+        setContentView(R.layout.activity_guess);
     }
+
+    public void back(View view){
+        setContentView(R.layout.activity_main);
+    }
+
     void guess(){
         guessNumber = rand.nextInt(upLimit+1-lowLimit)+lowLimit;
 
     }
+
+    void display(){
+
+    }
+
     void lower(){
         upLimit = guessNumber;
         guess();
