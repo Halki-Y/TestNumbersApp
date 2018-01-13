@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         int prevNumber = guessNumber;
         if(turns >= 10){
             setContentView(R.layout.activity_win);
+            return;
         }
-        guessNumber = rand.nextInt(upLimit+1-lowLimit)+lowLimit;
+        guessNumber = rand.nextInt(upLimit-lowLimit)+lowLimit;
         if((upLimit-lowLimit)==1){
             Toast.makeText(this, "Is this your number?", Toast.LENGTH_SHORT).show();
             return;
@@ -89,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
             guessNumber = 0;
             return;
         }
-        upLimit = guessNumber-1;
+        upLimit = guessNumber;
         guess();
     }
     public void higher(View view){
         turns++;
-        lowLimit = guessNumber+1;
+        lowLimit = guessNumber;
         guess();
     }
     public void correct(View view){
